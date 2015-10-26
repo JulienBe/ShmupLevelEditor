@@ -1,6 +1,10 @@
+import ui.Ui;
+
 public class Main {
 
-    public static void main(String[] args) {
+  private Ui ui = new Ui();
 
-    }
+  public static void main(String[] args) {
+    new Main();
+  }
 }
