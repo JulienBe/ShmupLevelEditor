@@ -7,10 +7,28 @@ import ui.NestButton;
  */
 public interface Exporters {
   default void export(NestButton[][] nests) {
-    for (int i = 0; i < nests.length; i++) {
+    String output = "{";
+    String comment = "/*\n";
+    for (int i = nests.length - 1; i >= 0; i--) {
+      output += "{";
       for (int i1 = 0; i1 < nests[i].length; i1++) {
-        nests[i][i1].toString();
+        Nest nest = nests[i][i1].nest;
+        if (nest.isActivated()) {
+          output += nest.toString() + ",";
+          comment += "X";
+        } else
+          comment += "-";
       }
+      comment += "\n";
+      output += "}, ";
     }
+    output = output.replaceAll("\\{}", "");
+    output = output.replaceAll(",}", "}");
+    output = output.replaceAll(", ,", "");
+    comment = comment.replaceAll("--------------------\n", "");
+    output += "}";
+    comment += "*/";
+    System.out.println(comment);
+    System.out.println(output);
   }
 }

@@ -5,6 +5,8 @@ import data.Exporters;
 import javax.swing.*;
 import java.awt.GridLayout;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +27,7 @@ public class Ui {
     NestButton[][] cells = new NestButton[width][height];
     for (int x = 0; x < cells.length; x++)
       for (int y = 0; y < cells[x].length; y++)
-        cells[x][y] = new NestButton(x, y);
+        cells[x][y] = new NestButton(y, cells.length - x);
     return cells;
   }
 
@@ -42,8 +44,12 @@ public class Ui {
 
   private void createMiddlePanel() {
     JButton export = new JButton("Export");
-    export.addActionListener(e -> exporters.forEach(exporter -> exporter.export(leftCells)));
+    export.addActionListener(e -> exporters.forEach(exporter -> export(exporter)));
     middlePanel.add(export);
+  }
+
+  private void export(Exporters exporter) {
+    exporter.export(leftCells);
   }
 
   private void createLeftPanel() {

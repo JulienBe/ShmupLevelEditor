@@ -22,10 +22,6 @@ public class Nest {
 
   @Override
   public String toString() {
-    return "Nest{" +
-            "activated=" + activated +
-            ", x=" + x +
-            ", y=" + y +
-            '}';
+    return "Nest.T" + x;
   }
 }

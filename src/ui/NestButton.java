@@ -9,7 +9,7 @@ import java.awt.*;
  * Created by julien on 10/27/15.
  */
 public class NestButton extends JButton {
-  private final Nest nest;
+  public final Nest nest;
 
   public NestButton(int x, int y) {
     addActionListener(e -> click());
